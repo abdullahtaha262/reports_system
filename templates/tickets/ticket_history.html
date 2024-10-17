@@ -1,0 +1,19 @@
+{% extends '_base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Solved Ticket History" %}{% endblock title %}
+
+{% block content %}
+<h1>{% trans "Solved Ticket History" %}</h1>
+<ul class="list-group">
+  {% for ticket in tickets %}
+  <li class="list-group-item">
+    <strong>{{ ticket.title }}</strong>
+    <p>{{ ticket.description }}</p>
+    <small>{% trans "Last updated:" %} {{ ticket.updated_at }}</small>
+  </li>
+  {% empty %}
+  <li class="list-group-item">{% trans "No solved tickets found." %}</li>
+  {% endfor %}
+</ul>
+{% endblock content %}

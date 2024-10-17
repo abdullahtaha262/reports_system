@@ -1,0 +1,38 @@
+{% extends '_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Ticket Status" %}{% endblock title %}
+
+{% block content %}
+<div class="container mt-4">
+  <h1 class="mb-4">{% trans "Ticket Status" %}</h1>
+  <div class="row">
+      {% for ticket in tickets %}
+      <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card h-100 shadow-sm">
+              {% if ticket.picture %}
+              <img src="{{ ticket.picture.url }}" class="card-img-top" alt="{{ ticket.title }}">
+              {% else %}
+              <img src="{% static 'images/default-ticket.jpg' %}" class="card-img-top" alt="Default Ticket Image">
+              {% endif %}
+              <div class="card-body">
+                  <h5 class="card-title">{{ ticket.title }}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ ticket.get_status_display }}</h6>
+                  <p class="card-text">{{ ticket.description|truncatewords:30 }}</p>
+              </div>
+              <div class="card-footer text-muted">
+                  <small>{% trans "Created at:" %} {{ ticket.created_at|date:"F d, Y" }}</small>
+              </div>
+          </div>
+      </div>
+      {% empty %}
+      <div class="col-12">
+          <div class="alert alert-info" role="alert">
+              {% trans "No tickets available." %}
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+</div>
+{% endblock content %}

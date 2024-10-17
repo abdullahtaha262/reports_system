@@ -1,11 +1,166 @@
 {% extends '_base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Home page{% endblock title %}
+{% block title %}{% trans "Customer Dashboard" %}{% endblock title %}
 
 {% block content %}
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-  <img src="{% static 'images/logo.png' %}" class="img-fluid" alt="DjangoX logo"/>
-  <p class="lead">A Django starter project with batteries.</p>
+<div class="container my-5">
+    {% comment %} <h1 class="text-center mb-5">{% trans "Customer Dashboard" %}</h1> {% endcomment %}
+
+    <!-- Button to open the modal -->
+    <div class="text-center mb-5">
+      <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#newTicketModal">
+        <i class="fas fa-plus-circle me-2"></i>{% trans "Open a New Ticket" %}
+      </button>
+    </div>
+
+    <div class="row">
+      <!-- New Tickets -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-header bg-primary text-white">
+            <h2 class="h5 mb-0"><i class="fas fa-ticket-alt me-2"></i>{% trans "New Tickets" %}</h2>
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              {% for ticket in received_tickets %}
+              <li class="list-group-item">
+                <h5 class="mb-1">{{ ticket.title }}</h5>
+                <p class="mb-2">{{ ticket.description|truncatechars:100 }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <img src="{% if ticket.picture %}{{ ticket.picture.url }}{% else %}{% static 'images/no_image.png' %}{% endif %}" 
+                       class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
+                  <span class="badge bg-info">{{ ticket.get_status_display }}</span>
+                </div>
+                <small class="text-muted d-block mt-2">{% trans "Created at:" %} {{ ticket.created_at|date:"F d, Y H:i" }}</small>
+              </li>
+              {% empty %}
+              <li class="list-group-item text-center">{% trans "No new tickets available." %}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Investigating Tickets -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-header bg-warning text-dark">
+            <h2 class="h5 mb-0"><i class="fas fa-search me-2"></i>{% trans "Investigating Tickets" %}</h2>
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              {% for ticket in investigating_tickets %}
+              <li class="list-group-item">
+                <h5 class="mb-1">{{ ticket.title }}</h5>
+                <p class="mb-2">{{ ticket.description|truncatechars:100 }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <img src="{% if ticket.picture %}{{ ticket.picture.url }}{% else %}{% static 'images/no_image.png' %}{% endif %}" 
+                       class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
+                  <span class="badge bg-warning text-dark">{{ ticket.get_status_display }}</span>
+                </div>
+                <small class="text-muted d-block mt-2">{% trans "Created at:" %} {{ ticket.created_at|date:"F d, Y H:i" }}</small>
+              </li>
+              {% empty %}
+              <li class="list-group-item text-center">{% trans "No investigating tickets available." %}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Solved Tickets History -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-header bg-success text-white">
+        <h2 class="h5 mb-0"><i class="fas fa-check-circle me-2"></i>{% trans "Solved Ticket History" %}</h2>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>{% trans "Title" %}</th>
+                <th>{% trans "Description" %}</th>
+                <th>{% trans "Image" %}</th>
+                <th>{% trans "Status" %}</th>
+                <th>{% trans "Created At" %}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for ticket in solved_tickets %}
+              <tr>
+                <td>{{ ticket.title }}</td>
+                <td>{{ ticket.description|truncatechars:50 }}</td>
+                <td>
+                  <img src="{% if ticket.picture %}{{ ticket.picture.url }}{% else %}{% static 'images/no_image.png' %}{% endif %}" 
+                       class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
+                </td>
+                <td><span class="badge bg-success">{{ ticket.get_status_display }}</span></td>
+                <td>{{ ticket.created_at|date:"F d, Y H:i" }}</td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="5" class="text-center">{% trans "No solved tickets found." %}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Ticket Modal -->
+    <div class="modal fade" id="newTicketModal" tabindex="-1" aria-labelledby="newTicketModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="newTicketModalLabel"><i class="fas fa-plus-circle me-2"></i>{% trans "Open a New Ticket" %}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+              {% csrf_token %}
+              {% for field in ticket_form %}
+                <div class="mb-3">
+                  {{ field.label_tag }}
+                  {{ field }}
+                  {% if field.errors %}
+                    <div class="invalid-feedback">
+                      {{ field.errors }}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endfor %}
+              <div class="text-end">
+                <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane me-2"></i>{% trans "Submit" %}</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </div>
 {% endblock content %}
+
+{% block extra_js %}
+<script>
+    // Enable Bootstrap form validation
+    (function () {
+      'use strict'
+      var forms = document.querySelectorAll('.needs-validation')
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+            form.classList.add('was-validated')
+          }, false)
+        })
+    })()
+</script>
+{% endblock extra_js %}

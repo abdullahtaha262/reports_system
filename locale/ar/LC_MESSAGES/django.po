@@ -1,0 +1,278 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-18 00:20+0300\n"
+"PO-Revision-Date: 2024-10-18 00:37+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"X-Generator: Poedit 3.5\n"
+
+#: accounts/admin.py:26 accounts/models.py:21
+msgid "Skills"
+msgstr "المهارات"
+
+#: accounts/forms.py:18
+msgid "Customers cannot have skills."
+msgstr "لا يمكن أن يكون لدى العملاء مهارات."
+
+#: accounts/forms.py:22
+msgid "Support must have at least one skill."
+msgstr "يجب أن يتمتع الدعم بمهارة واحدة على الأقل."
+
+#: accounts/models.py:7
+msgid "Skill Name"
+msgstr "اسم المهارة"
+
+#: accounts/models.py:14 tickets/models.py:12
+msgid "Customer"
+msgstr "العميل"
+
+#: accounts/models.py:15
+msgid "Support"
+msgstr "الدعم"
+
+#: accounts/models.py:19
+msgid "User Type"
+msgstr "نوع المستخدم"
+
+#: accounts/models.py:20
+msgid "Phone Number"
+msgstr "رقم الهاتف"
+
+#: accounts/models.py:31
+msgid "Admins cannot be customers or supports."
+msgstr "لا يمكن للمشرفين أن يكونوا عملاء أو داعمين."
+
+#: django_project/settings.py:133
+msgid "Arabic"
+msgstr "العربية"
+
+#: django_project/settings.py:134
+msgid "English"
+msgstr "الإنجليزية"
+
+#: templates/_base.html:11
+msgid "نظام الدعم الفني"
+msgstr "نظام الدعم الفني"
+
+#: templates/_base.html:12
+msgid "نظام لإدارة التذاكر والدعم الفني."
+msgstr "نظام إدارة التذاكر والدعم الفني."
+
+#: templates/_base.html:13
+msgid "فريق الدعم"
+msgstr "فريق الدعم"
+
+#: templates/_base.html:28
+msgid "Customer support system"
+msgstr "نظام دعم العملاء"
+
+#: templates/_base.html:30
+msgid "تبديل القائمة"
+msgstr "تبديل القائمة"
+
+#: templates/_base.html:37
+msgid "الرئيسية"
+msgstr "الرئيسية"
+
+#: templates/_base.html:41
+msgid "حول"
+msgstr "حول"
+
+#: templates/_base.html:49
+msgid "الإعدادات"
+msgstr "الإعدادات"
+
+#: templates/_base.html:54
+msgid "تغيير كلمة المرور"
+msgstr "تغيير كلمة المرور"
+
+#: templates/_base.html:55
+msgid "تسجيل الخروج"
+msgstr "تسجيل الخروج"
+
+#: templates/_base.html:61
+msgid "تسجيل الدخول"
+msgstr "تسجيل الدخول"
+
+#: templates/_base.html:99
+msgid "جميع الحقوق محفوظة © 2024"
+msgstr "جميع الحقوق محفوظة © 2024"
+
+#: templates/account/email/password_reset_key_message.txt:2
+#, python-format
+msgid ""
+"Hello from %(site_name)s!\n"
+"\n"
+"We've received a request to reset your password. If you didn't make this "
+"request, you can safely ignore this email. Otherwise, click the button below "
+"to reset your password."
+msgstr ""
+"مرحبًا من %(site_name)s!\n"
+"\n"
+"لقد تلقينا طلبًا لإعادة تعيين كلمة المرور الخاصة بك. إذا لم تقدم هذا الطلب، "
+"يمكنك تجاهل هذا البريد الإلكتروني بأمان. وإلا فانقر على الزر أدناه لإعادة "
+"تعيين كلمة المرور الخاصة بك."
+
+#: templates/account/email/password_reset_key_message.txt:8
+#, python-format
+msgid "In case you forgot, your username is %(username)s."
+msgstr "في حال كنت قد نسيت اسم المستخدم الخاص بك هو %(username)s."
+
+#: templates/account/email/password_reset_key_message.txt:10
+#, python-format
+msgid ""
+"Thank you for using %(site_name)s!\n"
+"%(site_domain)s"
+msgstr ""
+"شكرًا لاستخدامك %(site_name)s!\n"
+"%(site_domain)s"
+
+#: templates/account/login.html:5 templates/account/login.html:8
+#: templates/account/login.html:12
+msgid "Log in"
+msgstr "تسجيل الدخول"
+
+#: templates/account/logout.html:5
+msgid "Log out"
+msgstr "تسجيل الخروج"
+
+#: templates/account/logout.html:9 templates/account/logout.html:16
+msgid "Sign Out"
+msgstr "تسجيل الخروج"
+
+#: templates/account/logout.html:11
+msgid "Are you sure you want to sign out?"
+msgstr "هل أنت متأكد من رغبتك في تسجيل الخروج؟"
+
+#: templates/account/password_change.html:5
+#: templates/account/password_change.html:8
+#: templates/account/password_change.html:12
+msgid "Change Password"
+msgstr "تغيير كلمة المرور"
+
+#: templates/pages/home.html:5 templates/pages/home.html:9
+msgid "Customer Dashboard"
+msgstr "لوحة تحكم العملاء"
+
+#: templates/pages/home.html:14 templates/pages/home.html:119
+msgid "Open a New Ticket"
+msgstr "افتح تذكرة جديدة"
+
+#: templates/pages/home.html:23
+msgid "New Tickets"
+msgstr "تذاكر جديدة"
+
+#: templates/pages/home.html:36 templates/pages/home.html:63
+#: templates/tickets/ticket_status.html:25
+msgid "Created at:"
+msgstr "أنشأت في:"
+
+#: templates/pages/home.html:39
+msgid "No new tickets available."
+msgstr "لا توجد تذاكر جديدة متاحة."
+
+#: templates/pages/home.html:50
+msgid "Investigating Tickets"
+msgstr "التذاكر قيد التحقيق"
+
+#: templates/pages/home.html:66
+msgid "No investigating tickets available."
+msgstr "لا توجد تذاكر."
+
+#: templates/pages/home.html:77 templates/tickets/ticket_history.html:4
+#: templates/tickets/ticket_history.html:7
+msgid "Solved Ticket History"
+msgstr "سجل التذاكر التي تم حلها"
+
+#: templates/pages/home.html:84 tickets/forms.py:10 tickets/models.py:13
+msgid "Title"
+msgstr "العنوان"
+
+#: templates/pages/home.html:85 tickets/forms.py:11 tickets/models.py:14
+msgid "Description"
+msgstr "الوصف"
+
+#: templates/pages/home.html:86
+msgid "Image"
+msgstr "صورة"
+
+#: templates/pages/home.html:87 tickets/models.py:16
+msgid "Status"
+msgstr "الحالة"
+
+#: templates/pages/home.html:88 tickets/models.py:18
+msgid "Created At"
+msgstr "أنشئت في"
+
+#: templates/pages/home.html:105 templates/tickets/ticket_history.html:16
+msgid "No solved tickets found."
+msgstr "لم يتم العثور على تذاكر محلولة."
+
+#: templates/pages/home.html:137 templates/tickets/open_ticket.html:11
+msgid "Submit"
+msgstr "إرسال"
+
+#: templates/tickets/open_ticket.html:4 templates/tickets/open_ticket.html:7
+msgid "Open New Ticket"
+msgstr "فتح تذكرة جديدة"
+
+#: templates/tickets/ticket_history.html:13
+msgid "Last updated:"
+msgstr "آخر تحديث:"
+
+#: templates/tickets/ticket_status.html:5
+#: templates/tickets/ticket_status.html:9
+msgid "Ticket Status"
+msgstr "حالة الطلب"
+
+#: templates/tickets/ticket_status.html:32
+msgid "No tickets available."
+msgstr "لا توجد تذاكر متاحة."
+
+#: tickets/forms.py:12
+msgid "Upload Picture"
+msgstr "تحميل الصورة"
+
+#: tickets/models.py:7
+msgid "Received"
+msgstr "تم الاستلام"
+
+#: tickets/models.py:8
+msgid "Investigating"
+msgstr "التحقيق"
+
+#: tickets/models.py:9
+msgid "Solved"
+msgstr "تم الحل"
+
+#: tickets/models.py:15
+msgid "Picture"
+msgstr "صورة"
+
+#: tickets/models.py:17
+msgid "Assigned To"
+msgstr "تم التعيين إلى"
+
+#: tickets/models.py:19
+msgid "Updated At"
+msgstr "تم التحديث في"
+
+#~ msgid "المحتوى الافتراضي..."
+#~ msgstr "المحتوى الافتراضي..."
+
+#~ msgid "Login"
+#~ msgstr "تسجيل الدخول"

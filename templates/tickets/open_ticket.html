@@ -1,0 +1,13 @@
+{% extends '_base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Open New Ticket" %}{% endblock title %}
+
+{% block content %}
+<h1>{% trans "Open New Ticket" %}</h1>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">{% trans "Submit" %}</button>
+</form>
+{% endblock content %}
