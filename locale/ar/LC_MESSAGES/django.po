@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-18 00:20+0300\n"
-"PO-Revision-Date: 2024-10-18 00:37+0300\n"
+"POT-Creation-Date: 2024-10-22 00:15+0300\n"
+"PO-Revision-Date: 2024-10-22 00:15+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -20,9 +20,13 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
 "X-Generator: Poedit 3.5\n"
 
-#: accounts/admin.py:26 accounts/models.py:21
+#: accounts/admin.py:26 accounts/models.py:14 accounts/models.py:25
 msgid "Skills"
 msgstr "المهارات"
+
+#: accounts/apps.py:7
+msgid "Accounts"
+msgstr "الحسابات"
 
 #: accounts/forms.py:18
 msgid "Customers cannot have skills."
@@ -36,23 +40,28 @@ msgstr "يجب أن يتمتع الدعم بمهارة واحدة على الأ�
 msgid "Skill Name"
 msgstr "اسم المهارة"
 
-#: accounts/models.py:14 tickets/models.py:12
+#: accounts/models.py:13
+msgid "Skill"
+msgstr "مهارة"
+
+#: accounts/models.py:18 templates/tickets/ticket_list.html:10
+#: tickets/models.py:17
 msgid "Customer"
 msgstr "العميل"
 
-#: accounts/models.py:15
+#: accounts/models.py:19
 msgid "Support"
 msgstr "الدعم"
 
-#: accounts/models.py:19
+#: accounts/models.py:23
 msgid "User Type"
 msgstr "نوع المستخدم"
 
-#: accounts/models.py:20
+#: accounts/models.py:24
 msgid "Phone Number"
 msgstr "رقم الهاتف"
 
-#: accounts/models.py:31
+#: accounts/models.py:35
 msgid "Admins cannot be customers or supports."
 msgstr "لا يمكن للمشرفين أن يكونوا عملاء أو داعمين."
 
@@ -88,27 +97,19 @@ msgstr "تبديل القائمة"
 msgid "الرئيسية"
 msgstr "الرئيسية"
 
-#: templates/_base.html:41
-msgid "حول"
-msgstr "حول"
-
-#: templates/_base.html:49
+#: templates/_base.html:44
 msgid "الإعدادات"
 msgstr "الإعدادات"
 
-#: templates/_base.html:54
+#: templates/_base.html:49
 msgid "تغيير كلمة المرور"
 msgstr "تغيير كلمة المرور"
 
-#: templates/_base.html:55
+#: templates/_base.html:50
 msgid "تسجيل الخروج"
 msgstr "تسجيل الخروج"
 
-#: templates/_base.html:61
-msgid "تسجيل الدخول"
-msgstr "تسجيل الدخول"
-
-#: templates/_base.html:99
+#: templates/_base.html:81
 msgid "جميع الحقوق محفوظة © 2024"
 msgstr "جميع الحقوق محفوظة © 2024"
 
@@ -164,67 +165,99 @@ msgstr "هل أنت متأكد من رغبتك في تسجيل الخروج؟"
 msgid "Change Password"
 msgstr "تغيير كلمة المرور"
 
-#: templates/pages/home.html:5 templates/pages/home.html:9
+#: templates/pages/home.html:5
 msgid "Customer Dashboard"
 msgstr "لوحة تحكم العملاء"
 
-#: templates/pages/home.html:14 templates/pages/home.html:119
+#: templates/pages/home.html:15 templates/pages/home.html:184
 msgid "Open a New Ticket"
 msgstr "افتح تذكرة جديدة"
 
-#: templates/pages/home.html:23
+#: templates/pages/home.html:24
 msgid "New Tickets"
 msgstr "تذاكر جديدة"
 
-#: templates/pages/home.html:36 templates/pages/home.html:63
-#: templates/tickets/ticket_status.html:25
-msgid "Created at:"
-msgstr "أنشأت في:"
-
-#: templates/pages/home.html:39
+#: templates/pages/home.html:46
 msgid "No new tickets available."
 msgstr "لا توجد تذاكر جديدة متاحة."
 
-#: templates/pages/home.html:50
+#: templates/pages/home.html:57 templates/pages/support_dashboard.html:22
 msgid "Investigating Tickets"
 msgstr "التذاكر قيد التحقيق"
 
-#: templates/pages/home.html:66
+#: templates/pages/home.html:79
 msgid "No investigating tickets available."
 msgstr "لا توجد تذاكر."
 
-#: templates/pages/home.html:77 templates/tickets/ticket_history.html:4
+#: templates/pages/home.html:93 templates/tickets/ticket_history.html:4
 #: templates/tickets/ticket_history.html:7
 msgid "Solved Ticket History"
 msgstr "سجل التذاكر التي تم حلها"
 
-#: templates/pages/home.html:84 tickets/forms.py:10 tickets/models.py:13
-msgid "Title"
-msgstr "العنوان"
-
-#: templates/pages/home.html:85 tickets/forms.py:11 tickets/models.py:14
-msgid "Description"
-msgstr "الوصف"
-
-#: templates/pages/home.html:86
+#: templates/pages/home.html:101 templates/pages/home.html:145
+#: templates/tickets/ticket_list.html:7
 msgid "Image"
 msgstr "صورة"
 
-#: templates/pages/home.html:87 tickets/models.py:16
+#: templates/pages/home.html:102 templates/pages/home.html:146
+#: templates/tickets/ticket_list.html:8 tickets/forms.py:10
+#: tickets/models.py:18
+msgid "Title"
+msgstr "العنوان"
+
+#: templates/pages/home.html:103 templates/pages/home.html:147
+#: templates/tickets/ticket_list.html:9 tickets/forms.py:11
+#: tickets/models.py:19
+msgid "Description"
+msgstr "الوصف"
+
+#: templates/pages/home.html:104 templates/pages/home.html:148
+#: templates/tickets/ticket_list.html:11 templates/tickets/ticket_list.html:55
+#: tickets/models.py:25
 msgid "Status"
 msgstr "الحالة"
 
-#: templates/pages/home.html:88 tickets/models.py:18
+#: templates/pages/home.html:105 templates/pages/home.html:149
+msgid "Response"
+msgstr "الأجابة"
+
+#: templates/pages/home.html:106 templates/pages/home.html:150
+#: tickets/models.py:27
 msgid "Created At"
 msgstr "أنشئت في"
 
-#: templates/pages/home.html:105 templates/tickets/ticket_history.html:16
+#: templates/pages/home.html:124 templates/tickets/ticket_history.html:16
 msgid "No solved tickets found."
 msgstr "لم يتم العثور على تذاكر محلولة."
 
-#: templates/pages/home.html:137 templates/tickets/open_ticket.html:11
+#: templates/pages/home.html:137
+msgid "Denied Ticket History"
+msgstr "سجل التذاكر المرفوضة"
+
+#: templates/pages/home.html:168
+msgid "No denied tickets found."
+msgstr "لم يتم العثور على تذاكر مرفوضة."
+
+#: templates/pages/home.html:202 templates/tickets/open_ticket.html:11
 msgid "Submit"
 msgstr "إرسال"
+
+#: templates/pages/support_dashboard.html:4
+#: templates/pages/support_dashboard.html:7
+msgid "Support Dashboard"
+msgstr "لوحة تحكم الدعم"
+
+#: templates/pages/support_dashboard.html:12
+msgid "Received Tickets"
+msgstr "التذاكر المستلمة"
+
+#: templates/pages/support_dashboard.html:32
+msgid "Solved Tickets"
+msgstr "تذاكر محلولة"
+
+#: templates/pages/support_dashboard.html:42
+msgid "Denied Tickets"
+msgstr "التذاكر المرفوضة"
 
 #: templates/tickets/open_ticket.html:4 templates/tickets/open_ticket.html:7
 msgid "Open New Ticket"
@@ -234,42 +267,103 @@ msgstr "فتح تذكرة جديدة"
 msgid "Last updated:"
 msgstr "آخر تحديث:"
 
+#: templates/tickets/ticket_list.html:12 templates/tickets/ticket_list.html:64
+msgid "Response Message"
+msgstr "رسالة استجابة"
+
+#: templates/tickets/ticket_list.html:13
+msgid "Actions"
+msgstr "الإجراءات"
+
+#: templates/tickets/ticket_list.html:41
+msgid "Update"
+msgstr "تحديث"
+
+#: templates/tickets/ticket_list.html:50
+msgid "Update Ticket"
+msgstr "تحديث التذكرة"
+
+#: templates/tickets/ticket_list.html:51 templates/tickets/ticket_list.html:69
+msgid "Close"
+msgstr "إغلاق"
+
+#: templates/tickets/ticket_list.html:57 tickets/models.py:11
+msgid "Received"
+msgstr "تم الاستلام"
+
+#: templates/tickets/ticket_list.html:58 tickets/models.py:12
+msgid "Investigating"
+msgstr "التحقيق"
+
+#: templates/tickets/ticket_list.html:59 tickets/models.py:13
+msgid "Solved"
+msgstr "تم الحل"
+
+#: templates/tickets/ticket_list.html:60 tickets/models.py:14
+msgid "Denied"
+msgstr "مرفوض"
+
+#: templates/tickets/ticket_list.html:65
+msgid "Enter your response here"
+msgstr "أدخل إجابتك هنا"
+
+#: templates/tickets/ticket_list.html:70
+msgid "Save changes"
+msgstr "حفظ التغييرات"
+
+#: templates/tickets/ticket_list.html:80
+#: templates/tickets/ticket_status.html:32
+msgid "No tickets available."
+msgstr "لا توجد تذاكر متاحة."
+
 #: templates/tickets/ticket_status.html:5
 #: templates/tickets/ticket_status.html:9
 msgid "Ticket Status"
 msgstr "حالة الطلب"
 
-#: templates/tickets/ticket_status.html:32
-msgid "No tickets available."
-msgstr "لا توجد تذاكر متاحة."
+#: templates/tickets/ticket_status.html:25
+msgid "Created at:"
+msgstr "أنشأت في:"
+
+#: tickets/apps.py:7 tickets/models.py:35
+msgid "Tickets"
+msgstr "التذاكر"
 
 #: tickets/forms.py:12
 msgid "Upload Picture"
 msgstr "تحميل الصورة"
 
-#: tickets/models.py:7
-msgid "Received"
-msgstr "تم الاستلام"
+#: tickets/models.py:20
+msgid "Response message"
+msgstr "الأجابة"
 
-#: tickets/models.py:8
-msgid "Investigating"
-msgstr "التحقيق"
-
-#: tickets/models.py:9
-msgid "Solved"
-msgstr "تم الحل"
-
-#: tickets/models.py:15
+#: tickets/models.py:23
 msgid "Picture"
 msgstr "صورة"
 
-#: tickets/models.py:17
+#: tickets/models.py:26
 msgid "Assigned To"
 msgstr "تم التعيين إلى"
 
-#: tickets/models.py:19
+#: tickets/models.py:28
 msgid "Updated At"
 msgstr "تم التحديث في"
+
+#: tickets/models.py:34
+msgid "Ticket"
+msgstr "تذكرة"
+
+#~ msgid "No assigned tickets"
+#~ msgstr "لا توجد تذاكر مخصصة"
+
+#~ msgid "Ticket Information"
+#~ msgstr "معلومات التذكرة"
+
+#~ msgid "حول"
+#~ msgstr "حول"
+
+#~ msgid "تسجيل الدخول"
+#~ msgstr "تسجيل الدخول"
 
 #~ msgid "المحتوى الافتراضي..."
 #~ msgstr "المحتوى الافتراضي..."

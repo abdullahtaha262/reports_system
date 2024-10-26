@@ -5,9 +5,13 @@ from django.core.exceptions import ValidationError
 
 class Skill(models.Model):
     name = models.CharField(max_length=50, verbose_name=_('Skill Name'))
-
+    
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = _('Skill')
+        verbose_name_plural = _('Skills')
 
 class CustomUser(AbstractUser):
     USER_TYPE_CHOICES = [

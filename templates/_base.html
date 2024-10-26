@@ -2,7 +2,7 @@
 {% load i18n %}
 
 <!DOCTYPE html>
-<html lang="ar" dir="rtl"> <!-- RTL layout -->
+<html lang="ar" dir="rtl">
 
 <head>
   <meta charset="utf-8">
@@ -30,17 +30,12 @@
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{% trans 'تبديل القائمة' %}">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" 
                href="{% url 'home' %}">{% trans "الرئيسية" %}</a>
           </li>
-          {% comment %} <li class="nav-item">
-            <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" 
-               href="{% url 'about' %}">{% trans "حول" %}</a>
-          </li> {% endcomment %}
-          
         </ul>
         {% if user.is_authenticated %}
         <ul class="navbar-nav">
@@ -57,9 +52,7 @@
           </li>
         </ul>
         {% else %}
-        <form class="d-flex">
-          <a href="{% url 'account_login' %}" class="btn btn-outline-secondary ms-2">{% trans "تسجيل الدخول" %}</a>
-        </form>
+
         {% endif %}
       </div>
     </div>
@@ -79,17 +72,7 @@
     {% endif %}
 
     {% block content %}
-    {% comment %} <div id="loading" class="d-flex justify-content-center align-items-center">
-      <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">{% trans "جاري التحميل..." %}</span>
-      </div>
-    </div>
-    
-    <script>
-      window.onload = function() {
-        document.getElementById('loading').style.display = 'none';
-      };
-    </script> {% endcomment %}
+
     {% endblock content %}
   </div>
 
@@ -110,5 +93,27 @@
 </body>
 
 </html>
+        {% comment %} <form class="d-flex">
+          <a href="{% url 'account_login' %}" class="btn btn-outline-secondary ms-2">{% trans "تسجيل الدخول" %}</a>
+        </form> {% endcomment %}
 
+    {% comment %} 
+    <div id="loading" class="d-flex justify-content-center align-items-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">{% trans "جاري التحميل..." %}</span>
+      </div>
+    </div>
+    
+    <script>
+      window.onload = function() {
+        document.getElementById('loading').style.display = 'none';
+      };
+    </script> 
+    {% endcomment %}
 
+    {% comment %} 
+    <li class="nav-item">
+      <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" 
+      href="{% url 'about' %}">{% trans "حول" %}</a>
+    </li> 
+    {% endcomment %}

@@ -1,0 +1,103 @@
+{% load i18n %}
+{% load static %}
+<div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>{% trans "Image" %}</th>
+          <th>{% trans "Title" %}</th>
+          <th>{% trans "Description" %}</th>
+          <th>{% trans "Customer" %}</th>
+          <th>{% trans "Status" %}</th>
+          <th>{% trans "Response Message" %}</th>
+          <th>{% trans "Actions" %}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for ticket in tickets %}
+        <tr>
+          <!-- Image with click event to open modal -->
+          <td style="width: 80px;">
+            {% if ticket.picture %}
+            <img src="{{ ticket.picture.url }}" class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#imageModal{{ ticket.id }}">
+            <!-- Image Modal -->
+            <div class="modal fade" id="imageModal{{ ticket.id }}" tabindex="-1" aria-labelledby="imageModalLabel{{ ticket.id }}" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="imageModalLabel{{ ticket.id }}">{{ ticket.title }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% trans 'Close' %}"></button>
+                  </div>
+                  <div class="modal-body text-center">
+                    <img src="{{ ticket.picture.url }}" class="img-fluid" alt="{{ ticket.title }}">
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% else %}
+            <img src="{% static 'images/no_image.png' %}" class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
+            {% endif %}
+          </td>
+          <td>{{ ticket.title }}</td>
+          <td>{{ ticket.description|truncatechars:50 }}</td>
+          <td>{{ ticket.customer.username }}</td>
+          <td>
+            {% if ticket.status == 'received' %}
+              <span class="badge bg-secondary">{{ ticket.get_status_display }}</span>
+            {% elif ticket.status == 'investigating' %}
+              <span class="badge bg-warning text-dark">{{ ticket.get_status_display }}</span>
+            {% elif ticket.status == 'solved' %}
+              <span class="badge bg-success">{{ ticket.get_status_display }}</span>
+            {% elif ticket.status == 'denied' %}
+              <span class="badge bg-danger">{{ ticket.get_status_display }}</span>
+            {% endif %}
+          </td>
+          <td>{{ ticket.response_message|default:"-" }}</td>
+          <td>
+            <!-- Update Button triggers the modal -->
+            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal{{ ticket.id }}">
+              {% trans "Update" %}
+            </button>
+            <!-- Update Modal -->
+            <div class="modal fade" id="updateModal{{ ticket.id }}" tabindex="-1" aria-labelledby="updateModalLabel{{ ticket.id }}" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <form method="post" action="{% url 'update_ticket_status' ticket.id %}">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="updateModalLabel{{ ticket.id }}">{% trans "Update Ticket" %}: {{ ticket.title }}</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% trans 'Close' %}"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="mb-3">
+                        <label for="status{{ ticket.id }}" class="form-label">{% trans "Status" %}</label>
+                        <select id="status{{ ticket.id }}" name="status" class="form-select">
+                          <option value="received" {% if ticket.status == 'received' %}selected{% endif %}>{% trans "Received" %}</option>
+                          <option value="investigating" {% if ticket.status == 'investigating' %}selected{% endif %}>{% trans "Investigating" %}</option>
+                          <option value="solved" {% if ticket.status == 'solved' %}selected{% endif %}>{% trans "Solved" %}</option>
+                          <option value="denied" {% if ticket.status == 'denied' %}selected{% endif %}>{% trans "Denied" %}</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label for="responseMessage{{ ticket.id }}" class="form-label">{% trans "Response Message" %}</label>
+                        <textarea id="responseMessage{{ ticket.id }}" name="response_message" class="form-control" placeholder="{% trans 'Enter your response here' %}">{{ ticket.response_message }}</textarea>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+                      <button type="submit" class="btn btn-primary">{% trans "Save changes" %}</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="7" class="text-center">{% trans "No tickets available." %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>

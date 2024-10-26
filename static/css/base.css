@@ -49,3 +49,25 @@ body {
     line-height: 50px;
   }
 }
+
+/* Enlarge modal image */
+.modal-body img {
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+/* Pointer cursor on hover */
+.table img {
+  cursor: pointer;
+}
+
+/* Remove border from thumbnail */
+.img-thumbnail {
+  border: none;
+}
+
+/* Modal header styling */
+.modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}

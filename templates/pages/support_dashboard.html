@@ -1,0 +1,48 @@
+{% extends '_base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Support Dashboard" %}{% endblock title %}
+
+{% block content %}
+<h3 style="text-align:center">{% trans "Support Dashboard" %}</h3><hr><br>
+
+<!-- Received Tickets -->
+<div class="card mb-4">
+  <div class="card-header bg-secondary text-white">
+    <h2 class="h5 mb-0">{% trans "Received Tickets" %}</h2>
+  </div>
+  <div class="card-body">
+    {% include 'tickets/ticket_list.html' with tickets=received_tickets %}
+  </div>
+</div>
+
+<!-- Investigating Tickets -->
+<div class="card mb-4">
+  <div class="card-header bg-warning text-white">
+    <h2 class="h5 mb-0">{% trans "Investigating Tickets" %}</h2>
+  </div>
+  <div class="card-body">
+    {% include 'tickets/ticket_list.html' with tickets=investigating_tickets %}
+  </div>
+</div>
+
+<!-- Solved Tickets -->
+<div class="card mb-4">
+  <div class="card-header bg-success text-white">
+    <h2 class="h5 mb-0">{% trans "Solved Tickets" %}</h2>
+  </div>
+  <div class="card-body">
+    {% include 'tickets/ticket_list.html' with tickets=solved_tickets %}
+  </div>
+</div>
+
+<!-- Denied Tickets -->
+<div class="card mb-4">
+  <div class="card-header bg-danger text-white">
+    <h2 class="h5 mb-0">{% trans "Denied Tickets" %}</h2>
+  </div>
+  <div class="card-body">
+    {% include 'tickets/ticket_list.html' with tickets=denied_tickets %}
+  </div>
+</div>
+{% endblock content %}

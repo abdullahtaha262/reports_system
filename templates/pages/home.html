@@ -26,14 +26,20 @@
             <ul class="list-group list-group-flush">
               {% for ticket in received_tickets %}
               <li class="list-group-item">
-                <h5 class="mb-1">{{ ticket.title }}</h5>
-                <p class="mb-2">{{ ticket.description|truncatechars:100 }}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <img src="{% if ticket.picture %}{{ ticket.picture.url }}{% else %}{% static 'images/no_image.png' %}{% endif %}" 
-                       class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
-                  <span class="badge bg-info">{{ ticket.get_status_display }}</span>
+                <div class="row">
+                  <div class="col-3">
+                    <img src="{% if ticket.picture %}{{ ticket.picture.url }}{% else %}{% static 'images/no_image.png' %}{% endif %}" 
+                         class="img-thumbnail" style="width: 100%; height: auto; object-fit: cover;">
+                  </div>
+                  <div class="col-9">
+                    <h5 class="mb-1">{{ ticket.title }}</h5>
+                    <p class="mb-2">{{ ticket.description|truncatechars:100 }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <span class="badge bg-info">{{ ticket.get_status_display }}</span>
+                      <small class="text-muted"> {{ ticket.created_at|date:"F d, Y H:i" }}</small>
+                    </div>
+                  </div>
                 </div>
-                <small class="text-muted d-block mt-2">{% trans "Created at:" %} {{ ticket.created_at|date:"F d, Y H:i" }}</small>
               </li>
               {% empty %}
               <li class="list-group-item text-center">{% trans "No new tickets available." %}</li>
@@ -53,14 +59,20 @@
             <ul class="list-group list-group-flush">
               {% for ticket in investigating_tickets %}
               <li class="list-group-item">
-                <h5 class="mb-1">{{ ticket.title }}</h5>
-                <p class="mb-2">{{ ticket.description|truncatechars:100 }}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <img src="{% if ticket.picture %}{{ ticket.picture.url }}{% else %}{% static 'images/no_image.png' %}{% endif %}" 
-                       class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
-                  <span class="badge bg-warning text-dark">{{ ticket.get_status_display }}</span>
+                <div class="row">
+                  <div class="col-3">
+                    <img src="{% if ticket.picture %}{{ ticket.picture.url }}{% else %}{% static 'images/no_image.png' %}{% endif %}" 
+                         class="img-thumbnail" style="width: 100%; height: auto; object-fit: cover;">
+                  </div>
+                  <div class="col-9">
+                    <h5 class="mb-1">{{ ticket.title }}</h5> 
+                    <p class="mb-2">{{ ticket.description|truncatechars:100 }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <span class="badge bg-warning text-dark">{{ ticket.get_status_display }}</span>
+                      <small class="text-muted"> {{ ticket.created_at|date:"F d, Y H:i" }}</small>
+                    </div>
+                  </div>
                 </div>
-                <small class="text-muted d-block mt-2">{% trans "Created at:" %} {{ ticket.created_at|date:"F d, Y H:i" }}</small>
               </li>
               {% empty %}
               <li class="list-group-item text-center">{% trans "No investigating tickets available." %}</li>
@@ -71,38 +83,44 @@
       </div>
     </div>
 
-    <!-- Solved Tickets History -->
+
+      
+      <!-- Solved Tickets History -->
     <div class="card shadow-sm mb-4">
       <div class="card-header bg-success text-white">
-        <h2 class="h5 mb-0"><i class="fas fa-check-circle me-2"></i>{% trans "Solved Ticket History" %}</h2>
+        <h2 class="h5 mb-0">
+          <i class="fas fa-check-circle me-2"></i>{% trans "Solved Ticket History" %}
+        </h2>
       </div>
       <div class="card-body">
         <div class="table-responsive">
           <table class="table table-hover">
             <thead>
               <tr>
+                <th>{% trans "Image" %}</th>
                 <th>{% trans "Title" %}</th>
                 <th>{% trans "Description" %}</th>
-                <th>{% trans "Image" %}</th>
                 <th>{% trans "Status" %}</th>
+                <th>{% trans "Response" %}</th>
                 <th>{% trans "Created At" %}</th>
               </tr>
             </thead>
             <tbody>
               {% for ticket in solved_tickets %}
               <tr>
-                <td>{{ ticket.title }}</td>
-                <td>{{ ticket.description|truncatechars:50 }}</td>
                 <td>
                   <img src="{% if ticket.picture %}{{ ticket.picture.url }}{% else %}{% static 'images/no_image.png' %}{% endif %}" 
-                       class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
+                      class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
                 </td>
+                <td>{{ ticket.title }}</td>
+                <td>{{ ticket.description|truncatechars:50 }}</td>
                 <td><span class="badge bg-success">{{ ticket.get_status_display }}</span></td>
+                <td>{{ ticket.response_message }}</td>
                 <td>{{ ticket.created_at|date:"F d, Y H:i" }}</td>
               </tr>
               {% empty %}
               <tr>
-                <td colspan="5" class="text-center">{% trans "No solved tickets found." %}</td>
+                <td colspan="6" class="text-center">{% trans "No solved tickets found." %}</td>
               </tr>
               {% endfor %}
             </tbody>
@@ -110,6 +128,52 @@
         </div>
       </div>
     </div>
+
+    <!-- Denied Tickets History -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-header bg-secondary text-white">
+        <h2 class="h5 mb-0">
+          <i class="fas fa-times-circle me-2"></i>{% trans "Denied Ticket History" %}
+        </h2>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>{% trans "Image" %}</th>
+                <th>{% trans "Title" %}</th>
+                <th>{% trans "Description" %}</th>
+                <th>{% trans "Status" %}</th>
+                <th>{% trans "Response" %}</th>
+                <th>{% trans "Created At" %}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for ticket in denied_tickets %}
+              <tr>
+                <td>
+                  <img src="{% if ticket.picture %}{{ ticket.picture.url }}{% else %}{% static 'images/no_image.png' %}{% endif %}" 
+                      class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
+                </td>
+                <td>{{ ticket.title }}</td>
+                <td>{{ ticket.description|truncatechars:50 }}</td>
+                <td><span class="badge bg-danger">{{ ticket.get_status_display }}</span></td>
+                <td>{{ ticket.response_message }}</td>
+                <td>{{ ticket.created_at|date:"F d, Y H:i" }}</td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="6" class="text-center">{% trans "No denied tickets found." %}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
 
     <!-- New Ticket Modal -->
     <div class="modal fade" id="newTicketModal" tabindex="-1" aria-labelledby="newTicketModalLabel" aria-hidden="true">
