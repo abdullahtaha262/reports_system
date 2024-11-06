@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-22 00:15+0300\n"
-"PO-Revision-Date: 2024-10-22 00:15+0300\n"
+"POT-Creation-Date: 2024-11-01 19:13+0000\n"
+"PO-Revision-Date: 2024-11-01 22:13+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -45,7 +45,7 @@ msgid "Skill"
 msgstr "مهارة"
 
 #: accounts/models.py:18 templates/tickets/ticket_list.html:10
-#: tickets/models.py:17
+#: tickets/models.py:18
 msgid "Customer"
 msgstr "العميل"
 
@@ -169,76 +169,93 @@ msgstr "تغيير كلمة المرور"
 msgid "Customer Dashboard"
 msgstr "لوحة تحكم العملاء"
 
-#: templates/pages/home.html:15 templates/pages/home.html:184
+#: templates/pages/home.html:13 templates/pages/home.html:195
 msgid "Open a New Ticket"
 msgstr "افتح تذكرة جديدة"
 
-#: templates/pages/home.html:24
+#: templates/pages/home.html:23
 msgid "New Tickets"
 msgstr "تذاكر جديدة"
 
-#: templates/pages/home.html:46
+#: templates/pages/home.html:45 tickets/models.py:28
+msgid "Expected Response"
+msgstr "الاستجابة المتوقعة"
+
+#: templates/pages/home.html:53
 msgid "No new tickets available."
 msgstr "لا توجد تذاكر جديدة متاحة."
 
-#: templates/pages/home.html:57 templates/pages/support_dashboard.html:22
+#: templates/pages/home.html:63 templates/pages/support_dashboard.html:22
 msgid "Investigating Tickets"
 msgstr "التذاكر قيد التحقيق"
 
-#: templates/pages/home.html:79
+#: templates/pages/home.html:90
 msgid "No investigating tickets available."
 msgstr "لا توجد تذاكر."
 
-#: templates/pages/home.html:93 templates/tickets/ticket_history.html:4
+#: templates/pages/home.html:101 templates/tickets/ticket_history.html:4
 #: templates/tickets/ticket_history.html:7
 msgid "Solved Ticket History"
 msgstr "سجل التذاكر التي تم حلها"
 
-#: templates/pages/home.html:101 templates/pages/home.html:145
+#: templates/pages/home.html:110 templates/pages/home.html:156
 #: templates/tickets/ticket_list.html:7
 msgid "Image"
 msgstr "صورة"
 
-#: templates/pages/home.html:102 templates/pages/home.html:146
+#: templates/pages/home.html:111 templates/pages/home.html:157
 #: templates/tickets/ticket_list.html:8 tickets/forms.py:10
-#: tickets/models.py:18
+#: tickets/models.py:19
 msgid "Title"
 msgstr "العنوان"
 
-#: templates/pages/home.html:103 templates/pages/home.html:147
+#: templates/pages/home.html:112 templates/pages/home.html:158
 #: templates/tickets/ticket_list.html:9 tickets/forms.py:11
-#: tickets/models.py:19
+#: tickets/models.py:20
 msgid "Description"
 msgstr "الوصف"
 
-#: templates/pages/home.html:104 templates/pages/home.html:148
-#: templates/tickets/ticket_list.html:11 templates/tickets/ticket_list.html:55
-#: tickets/models.py:25
+#: templates/pages/home.html:113 templates/pages/home.html:159
+#: templates/tickets/ticket_list.html:11 templates/tickets/ticket_list.html:73
+#: tickets/models.py:26
 msgid "Status"
 msgstr "الحالة"
 
-#: templates/pages/home.html:105 templates/pages/home.html:149
+#: templates/pages/home.html:114 templates/pages/home.html:160
 msgid "Response"
 msgstr "الأجابة"
 
-#: templates/pages/home.html:106 templates/pages/home.html:150
-#: tickets/models.py:27
+#: templates/pages/home.html:115 templates/pages/home.html:161
+#: tickets/models.py:29
 msgid "Created At"
 msgstr "أنشئت في"
 
-#: templates/pages/home.html:124 templates/tickets/ticket_history.html:16
+#: templates/pages/home.html:116
+msgid "Solved At"
+msgstr "تم الحل في"
+
+#: templates/pages/home.html:138 templates/tickets/ticket_history.html:16
 msgid "No solved tickets found."
 msgstr "لم يتم العثور على تذاكر محلولة."
 
-#: templates/pages/home.html:137
+#: templates/pages/home.html:147
 msgid "Denied Ticket History"
 msgstr "سجل التذاكر المرفوضة"
 
-#: templates/pages/home.html:168
+#: templates/pages/home.html:162
+msgid "Denied At"
+msgstr "مرفوض في"
+
+#: templates/pages/home.html:184
 msgid "No denied tickets found."
 msgstr "لم يتم العثور على تذاكر مرفوضة."
 
-#: templates/pages/home.html:202 templates/tickets/open_ticket.html:11
+#: templates/pages/home.html:197 templates/tickets/ticket_list.html:29
+#: templates/tickets/ticket_list.html:69 templates/tickets/ticket_list.html:87
+msgid "Close"
+msgstr "إغلاق"
+
+#: templates/pages/home.html:218 templates/tickets/open_ticket.html:11
 msgid "Submit"
 msgstr "إرسال"
 
@@ -267,7 +284,7 @@ msgstr "فتح تذكرة جديدة"
 msgid "Last updated:"
 msgstr "آخر تحديث:"
 
-#: templates/tickets/ticket_list.html:12 templates/tickets/ticket_list.html:64
+#: templates/tickets/ticket_list.html:12 templates/tickets/ticket_list.html:82
 msgid "Response Message"
 msgstr "رسالة استجابة"
 
@@ -275,43 +292,39 @@ msgstr "رسالة استجابة"
 msgid "Actions"
 msgstr "الإجراءات"
 
-#: templates/tickets/ticket_list.html:41
+#: templates/tickets/ticket_list.html:59
 msgid "Update"
 msgstr "تحديث"
 
-#: templates/tickets/ticket_list.html:50
+#: templates/tickets/ticket_list.html:68
 msgid "Update Ticket"
 msgstr "تحديث التذكرة"
 
-#: templates/tickets/ticket_list.html:51 templates/tickets/ticket_list.html:69
-msgid "Close"
-msgstr "إغلاق"
-
-#: templates/tickets/ticket_list.html:57 tickets/models.py:11
+#: templates/tickets/ticket_list.html:75 tickets/models.py:12
 msgid "Received"
 msgstr "تم الاستلام"
 
-#: templates/tickets/ticket_list.html:58 tickets/models.py:12
+#: templates/tickets/ticket_list.html:76 tickets/models.py:13
 msgid "Investigating"
 msgstr "التحقيق"
 
-#: templates/tickets/ticket_list.html:59 tickets/models.py:13
+#: templates/tickets/ticket_list.html:77 tickets/models.py:14
 msgid "Solved"
 msgstr "تم الحل"
 
-#: templates/tickets/ticket_list.html:60 tickets/models.py:14
+#: templates/tickets/ticket_list.html:78 tickets/models.py:15
 msgid "Denied"
 msgstr "مرفوض"
 
-#: templates/tickets/ticket_list.html:65
+#: templates/tickets/ticket_list.html:83
 msgid "Enter your response here"
 msgstr "أدخل إجابتك هنا"
 
-#: templates/tickets/ticket_list.html:70
+#: templates/tickets/ticket_list.html:88
 msgid "Save changes"
 msgstr "حفظ التغييرات"
 
-#: templates/tickets/ticket_list.html:80
+#: templates/tickets/ticket_list.html:98
 #: templates/tickets/ticket_status.html:32
 msgid "No tickets available."
 msgstr "لا توجد تذاكر متاحة."
@@ -325,7 +338,38 @@ msgstr "حالة الطلب"
 msgid "Created at:"
 msgstr "أنشأت في:"
 
-#: tickets/apps.py:7 tickets/models.py:35
+#: tickets/admin.py:10
+msgid "Expected Response Duration (in hours)"
+msgstr "مدة الاستجابة المتوقعة (بالساعات)"
+
+#: tickets/admin.py:12
+msgid "Enter the expected response duration in hours."
+msgstr "أدخل مدة الاستجابة المتوقعة بالساعات."
+
+#: tickets/admin.py:66
+#, python-format
+msgid "%d days"
+msgstr "‏%d أيام"
+
+#: tickets/admin.py:69
+#, python-format
+msgid "%d hours"
+msgstr "%d ساعات"
+
+#: tickets/admin.py:72
+#, python-format
+msgid "%d minutes"
+msgstr "%d دقائق"
+
+#: tickets/admin.py:76
+msgid "Not set"
+msgstr "غير محدد"
+
+#: tickets/admin.py:78 tickets/models.py:40
+msgid "Expected Response Duration"
+msgstr "مدة الاستجابة المتوقعة"
+
+#: tickets/apps.py:7 tickets/models.py:37
 msgid "Tickets"
 msgstr "التذاكر"
 
@@ -333,25 +377,55 @@ msgstr "التذاكر"
 msgid "Upload Picture"
 msgstr "تحميل الصورة"
 
-#: tickets/models.py:20
+#: tickets/models.py:21
 msgid "Response message"
 msgstr "الأجابة"
 
-#: tickets/models.py:23
+#: tickets/models.py:24
 msgid "Picture"
 msgstr "صورة"
 
-#: tickets/models.py:26
+#: tickets/models.py:27
 msgid "Assigned To"
 msgstr "تم التعيين إلى"
 
-#: tickets/models.py:28
+#: tickets/models.py:30
 msgid "Updated At"
 msgstr "تم التحديث في"
 
-#: tickets/models.py:34
+#: tickets/models.py:36
 msgid "Ticket"
 msgstr "تذكرة"
+
+#: tickets/models.py:46
+#, python-brace-format
+msgid "{0} hour(s)"
+msgstr "{0} ساعة (ساعات)"
+
+#: tickets/models.py:48
+msgid "No expected response duration set"
+msgstr "لم يتم تعيين مدة الاستجابة المتوقعة"
+
+#: tickets/models.py:53
+msgid "There can only be one Ticket Settings."
+msgstr "يمكن أن يكون هناك إعدادات تذاكر واحد فقط."
+
+#: tickets/models.py:57
+msgid "Ticket Setting"
+msgstr "إعداد التذاكر"
+
+#: tickets/models.py:58
+msgid "Ticket Settings"
+msgstr "اعدادات التذاكر"
+
+#~ msgid "{days} day{'s' if days != 1 else ''}"
+#~ msgstr "{days} يوم{'s' إذا كانت الأيام !'= 1 وإلا ''}"
+
+#~ msgid "{hours} hour{'s' if hours != 1 else ''}"
+#~ msgstr "{hours} ساعة{'s' إذا كانت ساعات !'= 1 وإلا ''}"
+
+#~ msgid "{minutes} minute{'s' if minutes != 1 else ''}"
+#~ msgstr "{minutes} دقيقة{'s' إذا كانت الدقائق != 1 وإلا ''}"
 
 #~ msgid "No assigned tickets"
 #~ msgstr "لا توجد تذاكر مخصصة"

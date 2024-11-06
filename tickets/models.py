@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from accounts.models import CustomUser
 
@@ -24,6 +25,7 @@ class Ticket(models.Model):
     )    
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='received', verbose_name=_('Status'))
     assigned_to = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, limit_choices_to={'user_type': 'support'}, null=True, blank=True, verbose_name=_('Assigned To'), related_name='assigned_tickets')
+    expected_response = models.DateTimeField(null=True, blank=True, verbose_name=_('Expected Response'))
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Created At'))
     updated_at = models.DateTimeField(auto_now=True, verbose_name=_('Updated At'))
 
@@ -33,3 +35,24 @@ class Ticket(models.Model):
     class Meta:
         verbose_name = _('Ticket')
         verbose_name_plural = _('Tickets')
+
+class TicketSettings(models.Model):
+    expected_response_duration = models.DurationField(null=True, blank=True, verbose_name=_('Expected Response Duration'))
+
+    def __str__(self):
+        if self.expected_response_duration:
+            total_seconds = int(self.expected_response_duration.total_seconds())
+            hours = total_seconds / 3600
+            return _("{0} hour(s)").format(hours)
+        else:
+            return _("No expected response duration set")
+    
+    
+    def clean(self):
+        if not self.pk and TicketSettings.objects.exists():
+            raise ValidationError(_('There can only be one Ticket Settings.'))
+
+
+    class Meta:
+        verbose_name = _('Ticket Setting')
+        verbose_name_plural = _('Ticket Settings')

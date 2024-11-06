@@ -1,9 +1,11 @@
 from django.views.generic import TemplateView
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from datetime import timedelta
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from tickets.forms import TicketForm
-from tickets.models import Ticket
+from tickets.models import Ticket, TicketSettings
 
 class HomePageView(TemplateView):
     template_name = "pages/home.html"
@@ -35,6 +37,18 @@ class HomePageView(TemplateView):
             if form.is_valid():
                 ticket = form.save(commit=False)
                 ticket.customer = request.user
+
+                # Get expected_response_duration from TicketSettings
+                settings = TicketSettings.objects.first()
+                if settings and settings.expected_response_duration:
+                    duration = settings.expected_response_duration
+                else:
+                    # Set a default duration if settings are not defined
+                    duration = timedelta(hours=48)  # Default to 48 hours
+
+                # Calculate expected_response
+                ticket.expected_response = timezone.now() + duration
+
                 ticket.save()
                 return redirect('home')
         return self.get(request, *args, **kwargs)
